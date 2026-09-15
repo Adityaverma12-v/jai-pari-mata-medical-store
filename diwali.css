@@ -1,0 +1,638 @@
+```css
+/* ==========================================================================
+   HAPPY DIWALI CELEBRATION OVERLAY
+   JAI PARI MATA MEDICAL STORE
+   Isolated styles — uses only diwali-* classes
+   ========================================================================== */
+
+#diwali-celebration {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100vh;
+
+  z-index: 999999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 50% 12%,
+      rgba(255, 200, 80, 0.10) 0%,
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      rgba(255, 120, 0, 0.12) 0%,
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      #010207 0%,
+      #030714 30%,
+      #070b20 65%,
+      #0b1030 100%
+    );
+
+  transform: translate3d(0, 100%, 0);
+  opacity: 0;
+
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.55s ease,
+    visibility 0s linear 0.9s;
+
+  box-sizing: border-box;
+}
+
+#diwali-celebration *,
+#diwali-celebration *::before,
+#diwali-celebration *::after {
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================================
+   VISIBLE STATE
+   ========================================================================== */
+
+#diwali-celebration.diwali-visible {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+
+  visibility: visible;
+  pointer-events: auto;
+
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.55s ease,
+    visibility 0s linear 0s;
+}
+
+
+/* ==========================================================================
+   CLOSING STATE
+   ========================================================================== */
+
+#diwali-celebration.diwali-closing {
+  transform: translate3d(0, 100%, 0);
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.5s ease,
+    visibility 0s linear 0.7s;
+
+  visibility: hidden;
+}
+
+
+/* ==========================================================================
+   ATMOSPHERIC SKY
+   ========================================================================== */
+
+.diwali-sky-glow {
+  position: absolute;
+
+  top: 8%;
+  left: 50%;
+
+  width: min(700px, 95vw);
+  height: min(420px, 50vh);
+
+  transform: translateX(-50%);
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 215, 0, 0.14) 0%,
+      rgba(255, 150, 0, 0.06) 38%,
+      transparent 72%
+    );
+
+  filter: blur(45px);
+
+  pointer-events: none;
+  z-index: 1;
+
+  opacity: 0.9;
+}
+
+
+/* ==========================================================================
+   CANVAS
+   ========================================================================== */
+
+.diwali-canvas {
+  position: absolute;
+
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+
+/* ==========================================================================
+   CLOSE BUTTON
+   ========================================================================== */
+
+.diwali-close-btn {
+  position: absolute;
+
+  top: max(18px, env(safe-area-inset-top));
+  right: max(18px, env(safe-area-inset-right));
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.10);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1;
+
+  cursor: pointer;
+
+  z-index: 20;
+
+  box-shadow:
+    0 5px 25px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  outline: none;
+}
+
+.diwali-close-btn:hover {
+  transform: scale(1.08) rotate(90deg);
+
+  background: rgba(255, 215, 0, 0.20);
+
+  border-color: rgba(255, 215, 0, 0.65);
+
+  color: #ffe88a;
+
+  box-shadow:
+    0 0 28px rgba(255, 215, 0, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.diwali-close-btn:active {
+  transform: scale(0.94);
+}
+
+.diwali-close-btn:focus-visible {
+  outline: 2px solid #ffd700;
+  outline-offset: 4px;
+}
+
+
+/* ==========================================================================
+   CENTER CARD
+   ========================================================================== */
+
+.diwali-card {
+  position: relative;
+
+  z-index: 10;
+
+  width: min(580px, 90vw);
+  max-height: 85vh;
+
+  padding: 38px 34px 30px;
+
+  text-align: center;
+
+  background: rgba(7, 11, 24, 0.68);
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  border: 1px solid rgba(255, 215, 0, 0.28);
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.75),
+    0 0 55px rgba(255, 190, 30, 0.13),
+    inset 0 1px 1px rgba(255, 255, 255, 0.16);
+
+  transform: translate3d(0, 18px, 0) scale(0.92);
+
+  opacity: 0;
+
+  transition:
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.9s ease;
+
+  user-select: none;
+
+  will-change: transform, opacity;
+}
+
+.diwali-card.diwali-card-active {
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+}
+
+
+/* ==========================================================================
+   DIYA HEADER
+   ========================================================================== */
+
+.diwali-diyas {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 16px;
+
+  margin-bottom: 12px;
+
+  font-size: clamp(28px, 4.5vw, 38px);
+
+  line-height: 1;
+
+  filter:
+    drop-shadow(0 0 10px rgba(255, 170, 0, 0.65))
+    drop-shadow(0 0 22px rgba(255, 215, 0, 0.35));
+
+  animation:
+    diwaliDiyapulse 2.4s ease-in-out infinite;
+
+  will-change: transform, filter;
+}
+
+.diwali-sparkle-icon {
+  font-size: 0.78em;
+  opacity: 0.9;
+}
+
+
+/* ==========================================================================
+   MAIN TITLE
+   ========================================================================== */
+
+.diwali-title {
+  margin: 0 0 14px;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(34px, 6.8vw, 58px);
+
+  font-weight: 800;
+
+  letter-spacing: 2.5px;
+
+  line-height: 1.12;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff8df 0%,
+      #ffd700 38%,
+      #ffae19 72%,
+      #fff3b0 100%
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  filter:
+    drop-shadow(0 0 12px rgba(255, 215, 0, 0.35))
+    drop-shadow(0 0 28px rgba(255, 185, 30, 0.25));
+
+  animation:
+    diwaliTextGlow 3.5s ease-in-out infinite alternate;
+
+  will-change: filter;
+}
+
+
+/* ==========================================================================
+   SUBTITLE
+   ========================================================================== */
+
+.diwali-subtitle {
+  margin: 0 0 14px;
+
+  font-family:
+    "DM Sans",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  font-size: clamp(17px, 3.2vw, 22px);
+
+  font-weight: 600;
+
+  line-height: 1.45;
+
+  color: #f8fafc;
+
+  text-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.diwali-subtitle span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #ffe066;
+
+  font-weight: 700;
+}
+
+
+/* ==========================================================================
+   STORE BLESSING
+   ========================================================================== */
+
+.diwali-store-blessing {
+  margin-top: 16px;
+  padding-top: 15px;
+
+  border-top:
+    1px solid rgba(255, 215, 0, 0.22);
+
+  font-family:
+    "DM Sans",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  font-size: clamp(13px, 2.3vw, 15px);
+
+  font-weight: 400;
+
+  line-height: 1.5;
+
+  letter-spacing: 0.3px;
+
+  color: #cbd5e1;
+}
+
+.diwali-store-blessing strong {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+@keyframes diwaliDiyapulse {
+  0%,
+  100% {
+    transform: scale(1);
+
+    filter:
+      drop-shadow(0 0 10px rgba(255, 170, 0, 0.65))
+      drop-shadow(0 0 18px rgba(255, 215, 0, 0.25));
+  }
+
+  50% {
+    transform: scale(1.06);
+
+    filter:
+      drop-shadow(0 0 18px rgba(255, 190, 0, 0.95))
+      drop-shadow(0 0 32px rgba(255, 215, 0, 0.45));
+  }
+}
+
+
+@keyframes diwaliTextGlow {
+  0% {
+    filter:
+      drop-shadow(0 0 10px rgba(255, 215, 0, 0.25))
+      drop-shadow(0 0 20px rgba(255, 185, 30, 0.15));
+  }
+
+  100% {
+    filter:
+      drop-shadow(0 0 18px rgba(255, 215, 0, 0.55))
+      drop-shadow(0 0 35px rgba(255, 195, 40, 0.35));
+  }
+}
+
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  #diwali-celebration {
+    align-items: center;
+  }
+
+  .diwali-card {
+    width: min(92vw, 500px);
+
+    max-height: 80vh;
+
+    padding:
+      28px
+      22px
+      24px;
+
+    border-radius: 22px;
+  }
+
+  .diwali-close-btn {
+    top: max(14px, env(safe-area-inset-top));
+    right: max(14px, env(safe-area-inset-right));
+
+    width: 43px;
+    height: 43px;
+
+    font-size: 23px;
+  }
+
+  .diwali-diyas {
+    gap: 11px;
+    margin-bottom: 9px;
+  }
+
+  .diwali-title {
+    letter-spacing: 1.4px;
+    margin-bottom: 10px;
+  }
+
+  .diwali-subtitle {
+    line-height: 1.4;
+  }
+
+  .diwali-store-blessing {
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+}
+
+
+/* ==========================================================================
+   VERY SMALL PHONES
+   ========================================================================== */
+
+@media (max-width: 380px) {
+  .diwali-card {
+    width: 94vw;
+    padding: 24px 17px 20px;
+  }
+
+  .diwali-title {
+    font-size: 31px;
+    letter-spacing: 1px;
+  }
+
+  .diwali-subtitle {
+    font-size: 15px;
+  }
+
+  .diwali-store-blessing {
+    font-size: 12px;
+  }
+}
+
+
+/* ==========================================================================
+   LANDSCAPE MOBILE
+   ========================================================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .diwali-card {
+    max-height: 88vh;
+
+    padding:
+      18px
+      28px
+      16px;
+  }
+
+  .diwali-diyas {
+    margin-bottom: 5px;
+  }
+
+  .diwali-title {
+    margin-bottom: 7px;
+  }
+
+  .diwali-store-blessing {
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+}
+
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  #diwali-celebration {
+    transform: none;
+    transition: opacity 0.3s ease;
+  }
+
+  #diwali-celebration.diwali-visible {
+    transform: none;
+  }
+
+  #diwali-celebration.diwali-closing {
+    transform: none;
+    opacity: 0;
+  }
+
+  .diwali-card {
+    transform: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .diwali-card.diwali-card-active {
+    transform: none;
+  }
+
+  .diwali-diyas,
+  .diwali-title {
+    animation: none !important;
+  }
+
+  .diwali-close-btn:hover,
+  .diwali-close-btn:active {
+    transform: none;
+  }
+}
+
+
+/* ==========================================================================
+   SAFETY: PREVENT INTERACTION WITH WEBSITE WHILE OPEN
+   ========================================================================== */
+
+body.diwali-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+
+/* ==========================================================================
+   GPU OPTIMIZATION
+   ========================================================================== */
+
+#diwali-celebration,
+.diwali-card,
+.diwali-canvas {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+```
